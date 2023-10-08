@@ -15,4 +15,5 @@
  {:triangle {:target :browser
              :output-dir "public/js"
              :output-to "main.js"
+             :complier-options{:optimizations :simple}
              :modules {:main {:init-fn triangle.core/init}}}}}
