@@ -1,0 +1,1 @@
+{"version":3,"sources":["triangle/core.cljs"],"mappings":";AAEA,qBAAA,rBAAMA;AAAN,AAAc,4GAAA,rGAACC","names":["triangle.core/init","cljs.core.prn"],"sourcesContent":["(ns triangle.core)\n\n(defn init [] (prn \"hello world\"))\n"]}
