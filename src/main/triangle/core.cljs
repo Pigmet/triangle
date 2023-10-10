@@ -54,7 +54,6 @@
 (defn triangle []
   (let  [{:keys [a b c]} @state-vertex]
     [group
-     {:draggable true}
      [line {:points (flatten [a b c])
             :closed true
             :stroke "black"}]
@@ -66,18 +65,18 @@
   (let [style (fn [k] {:text-decoration "underline"
                        :text-decoration-thickness 3
                        :text-decoration-color (k center-color-table)})]
-    [:fieldset
-     {:style {:display "flex"
-              :height 120}}
-     [:legend "Select"]
-     [:table
-      (into [:tbody]
-            (for [[k v] center-color-table]
-              [:tr [:td {:style (style k) } (name k)]
-               [:td [:input {:type "checkbox"
-                             :on-change (fn [e]
-                                          (let [t (.. e -target -checked)]
-                                            (swap! state-center assoc k t)))}]]]))]]))
+    [:div
+     {:style {:display "inline-block"}}
+     [:fieldset
+      [:legend "Select"]
+      [:table
+       (into [:tbody]
+             (for [[k v] center-color-table]
+               [:tr [:td {:style (style k) } (name k)]
+                [:td [:input {:type "checkbox"
+                              :on-change (fn [e]
+                                           (let [t (.. e -target -checked)]
+                                             (swap! state-center assoc k t)))}]]]))]]]))
 
 (defn point [x y color]
   [circle {:x x :y y :fill color :radius point-size}])
