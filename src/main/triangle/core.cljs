@@ -42,9 +42,6 @@
   (let [t (. e -target)]
     [(. t x) (. t y)]))
 
-(defn- change-cursor [e s]
-  (set!  (.. e -target getStage container -style -cursor) s))
-
 (defn vertex [k]
   (let [[x y] (k @state-vertex)]
     [circle {:x x :y y :stroke "black" :radius point-size
@@ -54,17 +51,12 @@
              :on-drag-move (fn [e]
                              (swap! state-vertex assoc k (get-xy e)))}]))
 
-;; I still don't figure out how to drag the triangle so that
-;; it moves the vertices properly.
-
 (defn triangle []
   (let  [{:keys [a b c]} @state-vertex]
     [group
      {:draggable true}
      [line {:points (flatten [a b c])
             :closed true
-            :on-mouse-enter #(change-cursor % "pointer")
-            :on-mouse-out #(change-cursor % nil)
             :stroke "black"}]
      [vertex :a]
      [vertex :b]
